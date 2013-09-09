@@ -65,6 +65,51 @@ class BankAccount
 		puts "You have a balance of $#{@credit_balance} on your credit card and $#{@available_credit} available credit."
 	end
 
-
+	def interest
+		accrued_interest = @credit_balance * 0.015
+		puts "Your interest is #{accrued_interest}"
+	
+	end
 
 end
+
+#menu
+account = BankAccount.new()
+command = "active"
+while command !=  "q"
+puts "__________________________"
+puts "What would you like to do?"
+puts "Commands: int = calculate interest"
+puts "pay = pay credit card bill."
+puts "bc = balance check"
+puts "use = use credit card"
+puts "dep = deposit"
+puts "with = withdraw"
+puts "q = quit"
+
+command = gets.chomp.downcase
+
+  case command
+    when command = "pay"
+      account.pay_credit_card_bill
+    when command = "int"
+  	  account.interest
+    when command = "bc"
+  	  account.balance_check
+    when command = "use"
+  	  account.use_credit_card
+    when command = "dep"
+  	  puts "How much would you like to deposit?"
+  	  amount=gets.chomp.to_f
+  	  account.deposit(amount)
+    when command = "with"
+  	  puts "How much would you like to withdraw?"
+  	  amount=gets.chomp.to_f
+  	  account.withdraw(amount)
+    when "q"
+  	break
+
+    else 
+  	  puts "input not understood"
+    end
+  end
